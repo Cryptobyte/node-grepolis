@@ -1,0 +1,9 @@
+{
+	"id": "117977",
+	"x": "5",
+	"y": "17",
+	"islandType": "40",
+	"availableTowns": "20",
+	"resourcePlus": "wood",
+	"resourceMinus": "stone"
+}
