@@ -1,6 +1,8 @@
 ## Grepolis Data for NodeJS
 This library provides a simple layer between Grepolis's world data files and your NodeJS project. The purpose is to provide a quick and minimal library that turns the CSV (and some JSON) data into objects that can easily be worked with in Javascript. This project is under active development and will likely undergo several changes as it becomes stable.
 
+This library has no external dependencies.
+
 #### Installation
 ```
 npm i grepolis --save

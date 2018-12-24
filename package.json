@@ -1,6 +1,6 @@
 {
   "name": "grepolis",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Grepolis Data Utility for NodeJS",
   "main": "index.js",
   "scripts": {
