@@ -1,4 +1,9 @@
-const fetch = require('./helpers/fetch');
+const Fetch = require('./helpers/fetch');
+
+/**
+ * Example structure of server for arguments
+ */
+const serverExample = { lang: 'en', world: '110' };
 
 /**
  * Gets town data in JSON array from API
@@ -7,7 +12,7 @@ const fetch = require('./helpers/fetch');
  */
 function towns(server) {
   return new Promise((resolve, reject) => {
-    fetch.getData(`https://${server}.grepolis.com/data/towns.txt.gz`).then((response) => {
+    Fetch.getData(`https://${server.lang}${server.world}.grepolis.com/data/towns.txt.gz`).then((response) => {
       try {
         var towns = [];
           
@@ -43,7 +48,7 @@ function towns(server) {
  */
 function islands(server) {
   return new Promise((resolve, reject) => {
-    fetch.getData(`https://${server}.grepolis.com/data/islands.txt.gz`).then((response) => {
+    Fetch.getData(`https://${server.lang}${server.world}.grepolis.com/data/islands.txt.gz`).then((response) => {
       try {
         var islands = [];
 
@@ -79,7 +84,7 @@ function islands(server) {
  */
 function conquers(server) {
   return new Promise((resolve, reject) => {
-    fetch.getData(`https://${server}.grepolis.com/data/conquers.txt.gz`).then((response) => {
+    Fetch.getData(`https://${server.lang}${server.world}.grepolis.com/data/conquers.txt.gz`).then((response) => {
       try {
         var conquers = [];
 
@@ -115,7 +120,7 @@ function conquers(server) {
  */
 function players(server) {
   return new Promise((resolve, reject) => {
-    fetch.getData(`https://${server}.grepolis.com/data/players.txt.gz`).then((response) => {
+    Fetch.getData(`https://${server.lang}${server.world}.grepolis.com/data/players.txt.gz`).then((response) => {
       try {
         var players = [];
 
@@ -150,7 +155,7 @@ function players(server) {
  */
 function playersKills(server) {
   return new Promise((resolve, reject) => {
-    fetch.getData(`https://${server}.grepolis.com/data/player_kills_all.txt.gz`).then((response) => {
+    Fetch.getData(`https://${server.lang}${server.world}.grepolis.com/data/player_kills_all.txt.gz`).then((response) => {
       try {
         var kills = [];
 
@@ -182,7 +187,7 @@ function playersKills(server) {
   */
 function playersKillsAttack(server) {
   return new Promise((resolve, reject) => {
-    fetch.getData(`https://${server}.grepolis.com/data/player_kills_att.txt.gz`).then((response) => {
+    Fetch.getData(`https://${server.lang}${server.world}.grepolis.com/data/player_kills_att.txt.gz`).then((response) => {
       try {
         var kills = [];
 
@@ -214,7 +219,7 @@ function playersKillsAttack(server) {
  */
 function playersKillsDefend(server) {
   return new Promise((resolve, reject) => {
-    fetch.getData(`https://${server}.grepolis.com/data/player_kills_def.txt.gz`).then((response) => {
+    Fetch.getData(`https://${server.lang}${server.world}.grepolis.com/data/player_kills_def.txt.gz`).then((response) => {
       try {
         var kills = [];
 
@@ -246,7 +251,7 @@ function playersKillsDefend(server) {
  */
 function alliances(server) {
   return new Promise((resolve, reject) => {
-    fetch.getData(`https://${server}.grepolis.com/data/alliances.txt.gz`).then((response) => {
+    Fetch.getData(`https://${server.lang}${server.world}.grepolis.com/data/alliances.txt.gz`).then((response) => {
       try {
         var alliances = [];
 
@@ -281,7 +286,7 @@ function alliances(server) {
  */
 function alliancesKills(server) {
   return new Promise((resolve, reject) => {
-    fetch.getData(`https://${server}.grepolis.com/data/alliance_kills_all.txt.gz`).then((response) => {
+    Fetch.getData(`https://${server.lang}${server.world}.grepolis.com/data/alliance_kills_all.txt.gz`).then((response) => {
       try {
         var kills = [];
 
@@ -313,7 +318,7 @@ function alliancesKills(server) {
  */
 function alliancesKillsAttack(server) {
   return new Promise((resolve, reject) => {
-    fetch.getData(`https://${server}.grepolis.com/data/alliance_kills_att.txt.gz`).then((response) => {
+    Fetch.getData(`https://${server.lang}${server.world}.grepolis.com/data/alliance_kills_att.txt.gz`).then((response) => {
       try {
         var kills = [];
 
@@ -345,7 +350,7 @@ function alliancesKillsAttack(server) {
  */
 function alliancesKillsDefend(server) {
   return new Promise((resolve, reject) => {
-    fetch.getData(`https://${server}.grepolis.com/data/alliance_kills_def.txt.gz`).then((response) => {
+    Fetch.getData(`https://${server.lang}${server.world}.grepolis.com/data/alliance_kills_def.txt.gz`).then((response) => {
       try {
         var kills = [];
 
@@ -377,7 +382,7 @@ function alliancesKillsDefend(server) {
  */
 function units(server) {
   return new Promise((resolve, reject) => {
-    fetch.getData(`https://${server}.grepolis.com/data/units.json`).then((response) => {
+    Fetch.getData(`https://${server.lang}${server.world}.grepolis.com/data/units.json`).then((response) => {
       try {
         const json = JSON.parse(response);
         resolve(json);
@@ -397,7 +402,7 @@ function units(server) {
  */
 function researches(server) {
   return new Promise((resolve, reject) => {
-    fetch.getData(`https://${server}.grepolis.com/data/researches.json`).then((response) => {
+    Fetch.getData(`https://${server.lang}${server.world}.grepolis.com/data/researches.json`).then((response) => {
       try {
         const json = JSON.parse(response);
         resolve(json);
@@ -417,7 +422,7 @@ function researches(server) {
  */
 function buildings(server) {
   return new Promise((resolve, reject) => {
-    fetch.getData(`https://${server}.grepolis.com/data/buildings.json`).then((response) => {
+    Fetch.getData(`https://${server.lang}${server.world}.grepolis.com/data/buildings.json`).then((response) => {
       try {
         const json = JSON.parse(response);
         resolve(json);
