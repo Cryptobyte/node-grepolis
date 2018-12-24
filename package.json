@@ -19,7 +19,5 @@
     "url": "https://github.com/Cryptobyte/node-grepolis/issues"
   },
   "homepage": "https://github.com/Cryptobyte/node-grepolis#readme",
-  "dependencies": {
-    "request": "^2.88.0"
-  }
+  "dependencies": {}
 }

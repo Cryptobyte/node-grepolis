@@ -1,4 +1,4 @@
-const request = require('request');
+const fetch = require('./helpers/fetch');
 
 /**
  * Gets town data in JSON array from API
@@ -6,17 +6,12 @@ const request = require('request');
  * @param server Server to get data from (ex. en6)
  */
 function towns(server) {
-  return new Promise(function(resolve, reject) {
-    const opts = {
-      method: 'GET', 
-      uri: `http://${server}.grepolis.com/data/towns.txt`
-    };
-      
-    request(opts, function(error, response, body) {
-      if (!error && response.statusCode == 200) {
+  return new Promise((resolve, reject) => {
+    fetch.getData(`https://${server}.grepolis.com/data/towns.txt`).then((response) => {
+      try {
         var towns = [];
           
-        body.split('\n').forEach(function(line) {
+        response.split('\n').forEach((line) => {
           const record = line.split(",");
           const town = {
             id: record[0],
@@ -32,15 +27,11 @@ function towns(server) {
         });
           
         resolve(towns);
-          
-      } else {
-        if (error) {
-          reject(error);
-            
-        } else {
-          reject('Invalid statusCode')
-        }
-      }
+      
+      } catch (err) { reject(err); }
+
+    }).catch((err) => {
+      reject(err);
     });
   });
 }
@@ -51,17 +42,12 @@ function towns(server) {
  * @param server Server to get data from (ex. en6)
  */
 function islands(server) {
-  return new Promise(function(resolve, reject) {
-    const opts = {
-      method: 'GET',
-      uri: `http://${server}.grepolis.com/data/islands.txt`
-    };
-
-    request(opts, function(error, response, body) {
-      if (!error && response.statusCode == 200) {
+  return new Promise((resolve, reject) => {
+    fetch.getData(`https://${server}.grepolis.com/data/islands.txt`).then((response) => {
+      try {
         var islands = [];
 
-        body.split('\n').forEach(function(line) {
+        response.split('\n').forEach((line) => {
           const record = line.split(",");
           const island = {
             id: record[0],
@@ -77,15 +63,11 @@ function islands(server) {
         });
 
         resolve(islands);
+      
+      } catch (err) { reject(err); }
 
-      } else {
-        if (error) {
-          reject(error);
-
-        } else {
-          reject('Invalid statusCode')
-        }
-      }
+    }).catch((err) => {
+      reject(err);
     });
   });
 }
@@ -96,17 +78,12 @@ function islands(server) {
  * @param server Server to get data from (ex. en6)
  */
 function conquers(server) {
-  return new Promise(function(resolve, reject) {
-    const opts = {
-      method: 'GET',
-      uri: `http://${server}.grepolis.com/data/conquers.txt`
-    };
-
-    request(opts, function(error, response, body) {
-      if (!error && response.statusCode == 200) {
+  return new Promise((resolve, reject) => {
+    fetch.getData(`https://${server}.grepolis.com/data/conquers.txt`).then((response) => {
+      try {
         var conquers = [];
 
-        body.split('\n').forEach(function(line) {
+        response.split('\n').forEach((line) => {
           const record = line.split(",");
           const conquer = {
             townId: record[0],
@@ -122,15 +99,11 @@ function conquers(server) {
         });
 
         resolve(conquers);
+      
+      } catch (err) { reject(err); }
 
-      } else {
-        if (error) {
-          reject(error);
-
-        } else {
-          reject('Invalid statusCode')
-        }
-      }
+    }).catch((err) => {
+      reject(err);
     });
   });
 }
@@ -141,17 +114,12 @@ function conquers(server) {
  * @param server Server to get data from (ex. en6)
  */
 function players(server) {
-  return new Promise(function(resolve, reject) {
-    const opts = {
-      method: 'GET',
-      uri: `http://${server}.grepolis.com/data/players.txt`
-    };
-
-    request(opts, function(error, response, body) {
-      if (!error && response.statusCode == 200) {
+  return new Promise((resolve, reject) => {
+    fetch.getData(`https://${server}.grepolis.com/data/players.txt`).then((response) => {
+      try {
         var players = [];
 
-        body.split('\n').forEach(function(line) {
+        response.split('\n').forEach((line) => {
           const record = line.split(",");
           const player = {
             id: record[0],
@@ -166,15 +134,11 @@ function players(server) {
         });
 
         resolve(players);
+      
+      } catch (err) { reject(err); }
 
-      } else {
-        if (error) {
-          reject(error);
-
-        } else {
-          reject('Invalid statusCode')
-        }
-      }
+    }).catch((err) => {
+      reject(err);
     });
   });
 }
@@ -185,17 +149,12 @@ function players(server) {
  * @param server Server to get data from (ex. en6)
  */
 function playersKills(server) {
-  return new Promise(function(resolve, reject) {
-    const opts = {
-      method: 'GET',
-      uri: `http://${server}.grepolis.com/data/player_kills_all.txt`
-    };
-
-    request(opts, function(error, response, body) {
-      if (!error && response.statusCode == 200) {
+  return new Promise((resolve, reject) => {
+    fetch.getData(`https://${server}.grepolis.com/data/player_kills_all.txt`).then((response) => {
+      try {
         var kills = [];
 
-        body.split('\n').forEach(function(line) {
+        response.split('\n').forEach((line) => {
           const record = line.split(",");
           const kill = {
             rank: record[0],
@@ -207,15 +166,11 @@ function playersKills(server) {
         });
 
         resolve(kills);
+      
+      } catch (err) { reject(err); }
 
-      } else {
-        if (error) {
-          reject(error);
-
-        } else {
-          reject('Invalid statusCode')
-        }
-      }
+    }).catch((err) => {
+      reject(err);
     });
   });
 }
@@ -226,17 +181,12 @@ function playersKills(server) {
   * @param server Server to get data from (ex. en6)
   */
 function playersKillsAttack(server) {
-  return new Promise(function(resolve, reject) {
-    const opts = {
-      method: 'GET',
-      uri: `http://${server}.grepolis.com/data/player_kills_att.txt`
-    };
-
-    request(opts, function(error, response, body) {
-      if (!error && response.statusCode == 200) {
+  return new Promise((resolve, reject) => {
+    fetch.getData(`https://${server}.grepolis.com/data/player_kills_att.txt`).then((response) => {
+      try {
         var kills = [];
 
-        body.split('\n').forEach(function(line) {
+        response.split('\n').forEach((line) => {
           const record = line.split(",");
           const kill = {
             rank: record[0],
@@ -248,15 +198,11 @@ function playersKillsAttack(server) {
         });
 
         resolve(kills);
+      
+      } catch (err) { reject(err); }
 
-      } else {
-        if (error) {
-          reject(error);
-
-        } else {
-          reject('Invalid statusCode')
-        }
-      }
+    }).catch((err) => {
+      reject(err);
     });
   });
 }
@@ -267,17 +213,12 @@ function playersKillsAttack(server) {
  * @param server Server to get data from (ex. en6)
  */
 function playersKillsDefend(server) {
-  return new Promise(function(resolve, reject) {
-    const opts = {
-      method: 'GET',
-      uri: `http://${server}.grepolis.com/data/player_kills_def.txt`
-    };
-
-    request(opts, function(error, response, body) {
-      if (!error && response.statusCode == 200) {
+  return new Promise((resolve, reject) => {
+    fetch.getData(`https://${server}.grepolis.com/data/player_kills_def.txt`).then((response) => {
+      try {
         var kills = [];
 
-        body.split('\n').forEach(function(line) {
+        response.split('\n').forEach((line) => {
           const record = line.split(",");
           const kill = {
             rank: record[0],
@@ -289,15 +230,11 @@ function playersKillsDefend(server) {
         });
 
         resolve(kills);
+      
+      } catch (err) { reject(err); }
 
-      } else {
-        if (error) {
-          reject(error);
-
-        } else {
-          reject('Invalid statusCode')
-        }
-      }
+    }).catch((err) => {
+      reject(err);
     });
   });
 }
@@ -308,17 +245,12 @@ function playersKillsDefend(server) {
  * @param server Server to get data from (ex. en6)
  */
 function alliances(server) {
-  return new Promise(function(resolve, reject) {
-    const opts = {
-      method: 'GET',
-      uri: `http://${server}.grepolis.com/data/alliances.txt`
-    };
-
-    request(opts, function(error, response, body) {
-      if (!error && response.statusCode == 200) {
+  return new Promise((resolve, reject) => {
+    fetch.getData(`https://${server}.grepolis.com/data/alliances.txt`).then((response) => {
+      try {
         var alliances = [];
 
-        body.split('\n').forEach(function(line) {
+        response.split('\n').forEach((line) => {
           const record = line.split(",");
           const alliance = {
             id: record[0],
@@ -333,15 +265,11 @@ function alliances(server) {
         });
 
         resolve(alliances);
+      
+      } catch (err) { reject(err); }
 
-      } else {
-        if (error) {
-          reject(error);
-
-        } else {
-          reject('Invalid statusCode')
-        }
-      }
+    }).catch((err) => {
+      reject(err);
     });
   });
 }
@@ -352,17 +280,12 @@ function alliances(server) {
  * @param server Server to get data from (ex. en6)
  */
 function alliancesKills(server) {
-  return new Promise(function(resolve, reject) {
-    const opts = {
-      method: 'GET',
-      uri: `http://${server}.grepolis.com/data/alliance_kills_all.txt`
-    };
-
-    request(opts, function(error, response, body) {
-      if (!error && response.statusCode == 200) {
+  return new Promise((resolve, reject) => {
+    fetch.getData(`https://${server}.grepolis.com/data/alliance_kills_all.txt`).then((response) => {
+      try {
         var kills = [];
 
-        body.split('\n').forEach(function(line) {
+        response.split('\n').forEach((line) => {
           const record = line.split(",");
           const kill = {
             rank: record[0],
@@ -374,15 +297,11 @@ function alliancesKills(server) {
         });
 
         resolve(kills);
+      
+      } catch (err) { reject(err); }
 
-      } else {
-        if (error) {
-          reject(error);
-
-        } else {
-          reject('Invalid statusCode')
-        }
-      }
+    }).catch((err) => {
+      reject(err);
     });
   });
 }
@@ -393,17 +312,12 @@ function alliancesKills(server) {
  * @param server Server to get data from (ex. en6)
  */
 function alliancesKillsAttack(server) {
-  return new Promise(function(resolve, reject) {
-    const opts = {
-      method: 'GET',
-      uri: `http://${server}.grepolis.com/data/alliance_kills_att.txt`
-    };
-
-    request(opts, function(error, response, body) {
-      if (!error && response.statusCode == 200) {
+  return new Promise((resolve, reject) => {
+    fetch.getData(`https://${server}.grepolis.com/data/alliance_kills_att.txt`).then((response) => {
+      try {
         var kills = [];
 
-        body.split('\n').forEach(function(line) {
+        response.split('\n').forEach((line) => {
           const record = line.split(",");
           const kill = {
             rank: record[0],
@@ -415,15 +329,11 @@ function alliancesKillsAttack(server) {
         });
 
         resolve(kills);
+      
+      } catch (err) { reject(err); }
 
-      } else {
-        if (error) {
-          reject(error);
-
-        } else {
-          reject('Invalid statusCode')
-        }
-      }
+    }).catch((err) => {
+      reject(err);
     });
   });
 }
@@ -434,17 +344,12 @@ function alliancesKillsAttack(server) {
  * @param server Server to get data from (ex. en6)
  */
 function alliancesKillsDefend(server) {
-  return new Promise(function(resolve, reject) {
-    const opts = {
-      method: 'GET',
-      uri: `http://${server}.grepolis.com/data/alliance_kills_def.txt`
-    };
-
-    request(opts, function(error, response, body) {
-      if (!error && response.statusCode == 200) {
+  return new Promise((resolve, reject) => {
+    fetch.getData(`https://${server}.grepolis.com/data/alliance_kills_def.txt`).then((response) => {
+      try {
         var kills = [];
 
-        body.split('\n').forEach(function(line) {
+        response.split('\n').forEach((line) => {
           const record = line.split(",");
           const kill = {
             rank: record[0],
@@ -456,15 +361,11 @@ function alliancesKillsDefend(server) {
         });
 
         resolve(kills);
+      
+      } catch (err) { reject(err); }
 
-      } else {
-        if (error) {
-          reject(error);
-
-        } else {
-          reject('Invalid statusCode')
-        }
-      }
+    }).catch((err) => {
+      reject(err);
     });
   });
 }
@@ -475,24 +376,16 @@ function alliancesKillsDefend(server) {
  * @param server Server to get data from (ex. en6)
  */
 function units(server) {
-  return new Promise(function(resolve, reject) {
-    const opts = {
-      method: 'GET',
-      uri: `http://${server}.grepolis.com/data/units.json`
-    };
-
-    request(opts, function(error, response, body) {
-      if (!error && response.statusCode == 200) {
-        resolve(JSON.parse(body));
+  return new Promise((resolve, reject) => {
+    fetch.getData(`https://${server}.grepolis.com/data/units.json`).then((response) => {
+      try {
+        const json = JSON.parse(response);
+        resolve(json);
       
-      } else {
-        if (error) {
-          reject(error);
+      } catch (err) { reject(err); }
 
-        } else {
-          reject('Invalid statusCode')
-        }
-      }
+    }).catch((err) => {
+      reject(err);
     });
   });
 }
@@ -503,24 +396,16 @@ function units(server) {
  * @param server Server to get data from (ex. en6)
  */
 function researches(server) {
-  return new Promise(function(resolve, reject) {
-    const opts = {
-      method: 'GET',
-      uri: `http://${server}.grepolis.com/data/researches.json`
-    };
-
-    request(opts, function(error, response, body) {
-      if (!error && response.statusCode == 200) {
-        resolve(JSON.parse(body));
+  return new Promise((resolve, reject) => {
+    fetch.getData(`https://${server}.grepolis.com/data/researches.json`).then((response) => {
+      try {
+        const json = JSON.parse(response);
+        resolve(json);
       
-      } else {
-        if (error) {
-          reject(error);
+      } catch (err) { reject(err); }
 
-        } else {
-          reject('Invalid statusCode')
-        }
-      }
+    }).catch((err) => {
+      reject(err);
     });
   });
 }
@@ -531,40 +416,23 @@ function researches(server) {
  * @param server Server to get data from (ex. en6)
  */
 function buildings(server) {
-  return new Promise(function(resolve, reject) {
-    const opts = {
-      method: 'GET',
-      uri: `http://${server}.grepolis.com/data/buildings.json`
-    };
-
-    request(opts, function(error, response, body) {
-      if (!error && response.statusCode == 200) {
-        resolve(JSON.parse(body));
+  return new Promise((resolve, reject) => {
+    fetch.getData(`https://${server}.grepolis.com/data/buildings.json`).then((response) => {
+      try {
+        const json = JSON.parse(response);
+        resolve(json);
       
-      } else {
-        if (error) {
-          reject(error);
+      } catch (err) { reject(err); }
 
-        } else {
-          reject('Invalid statusCode')
-        }
-      }
+    }).catch((err) => {
+      reject(err);
     });
   });
 }
 
 module.exports = {
-  towns, 
-  islands, 
-  conquers, 
-  players, 
-  playersKills, 
-  playersKillsAttack, 
-  playersKillsDefend, 
-  alliances, 
-  alliancesKillsAttack, 
-  alliancesKillsDefend,
-  units,
-  researches,
-  buildings
+  towns, islands, conquers, 
+  players, playersKills, playersKillsAttack, playersKillsDefend, 
+  alliances, alliancesKills, alliancesKillsAttack, alliancesKillsDefend,
+  units, researches, buildings
 };
