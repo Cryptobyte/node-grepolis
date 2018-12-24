@@ -1,7 +1,14 @@
 var https = require('https');
+var zlib = require('zlib');
 
+/**
+ * This function sends a request to the server endpoint 
+ * and decompresses the gzip compressed data before 
+ * passing it back in a Promise
+ * @param {*} url Url to the data to fetch
+ */
 function getData(url) {
-  return new Promise(function(resolve, reject) {
+  return new Promise((resolve, reject) => {
     https.get(url, (res) => {
       const { statusCode } = res;
 
@@ -17,20 +24,21 @@ function getData(url) {
         return;
       }
 
-      let rawData = '';
-      res.setEncoding('utf8');
-      res.on('data', (chunk) => { 
-        rawData += chunk; 
-      });
+      var gunzip = zlib.createGunzip();
+      res.pipe(gunzip);
 
-      res.on('end', () => {
-        resolve(rawData);
-      });
+      var buffer  = '';
+      gunzip.on('data', function (data) {
+        buffer += data;
 
-    }).on('error', (e) => {
-      reject(`Got error: ${e.message}`);
-    });
+      }).on('end', function () {
+        resolve(buffer);
+
+      }).on('error', function (e) {
+        reject(e)
+      });
+    })
   });
-};
+}
 
 module.exports = { getData }

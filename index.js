@@ -7,7 +7,7 @@ const fetch = require('./helpers/fetch');
  */
 function towns(server) {
   return new Promise((resolve, reject) => {
-    fetch.getData(`https://${server}.grepolis.com/data/towns.txt`).then((response) => {
+    fetch.getData(`https://${server}.grepolis.com/data/towns.txt.gz`).then((response) => {
       try {
         var towns = [];
           
@@ -43,7 +43,7 @@ function towns(server) {
  */
 function islands(server) {
   return new Promise((resolve, reject) => {
-    fetch.getData(`https://${server}.grepolis.com/data/islands.txt`).then((response) => {
+    fetch.getData(`https://${server}.grepolis.com/data/islands.txt.gz`).then((response) => {
       try {
         var islands = [];
 
@@ -79,7 +79,7 @@ function islands(server) {
  */
 function conquers(server) {
   return new Promise((resolve, reject) => {
-    fetch.getData(`https://${server}.grepolis.com/data/conquers.txt`).then((response) => {
+    fetch.getData(`https://${server}.grepolis.com/data/conquers.txt.gz`).then((response) => {
       try {
         var conquers = [];
 
@@ -115,7 +115,7 @@ function conquers(server) {
  */
 function players(server) {
   return new Promise((resolve, reject) => {
-    fetch.getData(`https://${server}.grepolis.com/data/players.txt`).then((response) => {
+    fetch.getData(`https://${server}.grepolis.com/data/players.txt.gz`).then((response) => {
       try {
         var players = [];
 
@@ -150,7 +150,7 @@ function players(server) {
  */
 function playersKills(server) {
   return new Promise((resolve, reject) => {
-    fetch.getData(`https://${server}.grepolis.com/data/player_kills_all.txt`).then((response) => {
+    fetch.getData(`https://${server}.grepolis.com/data/player_kills_all.txt.gz`).then((response) => {
       try {
         var kills = [];
 
@@ -182,7 +182,7 @@ function playersKills(server) {
   */
 function playersKillsAttack(server) {
   return new Promise((resolve, reject) => {
-    fetch.getData(`https://${server}.grepolis.com/data/player_kills_att.txt`).then((response) => {
+    fetch.getData(`https://${server}.grepolis.com/data/player_kills_att.txt.gz`).then((response) => {
       try {
         var kills = [];
 
@@ -214,7 +214,7 @@ function playersKillsAttack(server) {
  */
 function playersKillsDefend(server) {
   return new Promise((resolve, reject) => {
-    fetch.getData(`https://${server}.grepolis.com/data/player_kills_def.txt`).then((response) => {
+    fetch.getData(`https://${server}.grepolis.com/data/player_kills_def.txt.gz`).then((response) => {
       try {
         var kills = [];
 
@@ -246,7 +246,7 @@ function playersKillsDefend(server) {
  */
 function alliances(server) {
   return new Promise((resolve, reject) => {
-    fetch.getData(`https://${server}.grepolis.com/data/alliances.txt`).then((response) => {
+    fetch.getData(`https://${server}.grepolis.com/data/alliances.txt.gz`).then((response) => {
       try {
         var alliances = [];
 
@@ -281,7 +281,7 @@ function alliances(server) {
  */
 function alliancesKills(server) {
   return new Promise((resolve, reject) => {
-    fetch.getData(`https://${server}.grepolis.com/data/alliance_kills_all.txt`).then((response) => {
+    fetch.getData(`https://${server}.grepolis.com/data/alliance_kills_all.txt.gz`).then((response) => {
       try {
         var kills = [];
 
@@ -313,7 +313,7 @@ function alliancesKills(server) {
  */
 function alliancesKillsAttack(server) {
   return new Promise((resolve, reject) => {
-    fetch.getData(`https://${server}.grepolis.com/data/alliance_kills_att.txt`).then((response) => {
+    fetch.getData(`https://${server}.grepolis.com/data/alliance_kills_att.txt.gz`).then((response) => {
       try {
         var kills = [];
 
@@ -345,7 +345,7 @@ function alliancesKillsAttack(server) {
  */
 function alliancesKillsDefend(server) {
   return new Promise((resolve, reject) => {
-    fetch.getData(`https://${server}.grepolis.com/data/alliance_kills_def.txt`).then((response) => {
+    fetch.getData(`https://${server}.grepolis.com/data/alliance_kills_def.txt.gz`).then((response) => {
       try {
         var kills = [];
 
